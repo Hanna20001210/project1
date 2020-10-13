@@ -1,7 +1,7 @@
 
 #include <iostream>
 int **matrix;
-int matrix_width, matric_height,ref,n,id,right_limit,up_limit,row;
+int matrix_width, matrix_height,r,n,id,right_limit,up_limit,row;
 
 int blocks[19][4][4]{
     {{0,1,0,0},{1,1,1,0},{0,0,0,0},{0,0,0,0}},//T1
@@ -36,7 +36,7 @@ int main(void) {
     }
     
     string name;
-    cin>>name>>ref>>n;
+    cin>>name>>r>>n;
     
     Define_id(name);
     
@@ -49,11 +49,11 @@ int main(void) {
 }
 
 bool Left_Boundary(){
-    if( ref < 0){
+    if( r < 1){
         return false;
     }
     for(int j = 0; j <= up_limit; j++){
-        if(matrix[row+j][ref-1] != 0 || block[id][j][0]){
+        if(matrix[row+j][r-1] == 1 && blocks[id][j][0] == 1){
             
         }
     }
@@ -65,7 +65,7 @@ void Right_Boundary(){
 
 void Clear(){
     bool clear = true;
-    for (int i = 0; i < matric_height ; i++){
+    for (int i = 0; i < matrix_height ; i++){
         for (int j = matrix_width - 1; j >= 0; j--){
             if(matrix[i][j] != 0){
                 clear = false;
