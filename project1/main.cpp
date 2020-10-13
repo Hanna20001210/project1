@@ -28,9 +28,9 @@ int blocks[19][4][4]{
 using namespace std;
 int main(void) {
     
-    cin >> matrix_width >> matric_height;
+    cin >> matrix_width >> matrix_height;
 
-    for (int i = 1; i <= matric_height; i++)
+    for (int i = 1; i <= matrix_height; i++)
     {
         matrix[i] = new int[matrix_width];
     }
@@ -40,7 +40,7 @@ int main(void) {
     
     Define_id(name);
     
-    for (int i = 1; i <= matric_height; i++)
+    for (int i = 1; i <= matrix_height; i++)
     {
         delete[] matrix[i];
     }
