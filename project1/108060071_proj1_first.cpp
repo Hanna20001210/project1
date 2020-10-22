@@ -3,10 +3,10 @@
 #include <sstream>
 #include <fstream>
 
-int matrix[16][41];
+int matrix[16][41]; //因為row,col都從1開始而非0，所以matrix初始範圍長寬各加一
 int matrix_width, matrix_height,r,n,id,right_limit,up_limit,row,top_row,hit_time;
 
-int blocks[19][4][4]={
+int blocks[19][4][4]={ //19種方塊的形狀
     {{0,1,0,0},{1,1,1,0},{0,0,0,0},{0,0,0,0}},//T1
     {{0,1,0,0},{1,1,0,0},{0,1,0,0},{0,0,0,0}},//T2
     {{1,1,1,0},{0,1,0,0},{0,0,0,0},{0,0,0,0}},//T3
@@ -27,23 +27,22 @@ int blocks[19][4][4]={
     {{1,1,1,1},{0,0,0,0},{0,0,0,0},{0,0,0,0}},//I2
     {{1,1,0,0},{1,1,0,0},{0,0,0,0},{0,0,0,0}},//O
 };
-void Clear();
-void Define_id(std::string);
-void hit_bottom();
-void fall();
-void block_to_matrix();
-void shift();
-void all_move_down(int);
+void Clear(); //消行
+void Define_id(std::string); //判斷輸入方塊id
+void hit_bottom(); //判斷是否落底
+void fall(); //下落一行
+void block_to_matrix(); //將方塊填入matrix
+void shift(); //左右平移
+void all_move_down(int); //消行後往下掉落
 /*bool Left_Boundary(void);
 bool Right_Boundary(void);*/
 
 using namespace std;
-int main(int argc, char* argv[]) {//argc:數字
+int main(int argc, char* argv[]){
     ifstream file(argv[1], ios::in);
     file >>  matrix_height >> matrix_width;
     for (int i = 1; i <= matrix_height; i++){
-        for (int j = 1; j <= matrix_width; j++)
-        {
+        for (int j = 1; j <= matrix_width; j++){
             matrix[i][j]=0;
         }
     }
@@ -61,7 +60,7 @@ int main(int argc, char* argv[]) {//argc:數字
             getline(file, s3);
             r=stoi(s2);
             n=stoi(s3);
-            //cout<<s1<<r<<n<<endl;
+            
             row = top_row+1;
             hit_time=0;
             Define_id(s1);
@@ -161,6 +160,10 @@ void Clear(){
                 matrix[i][m]=0;
             }
             all_move_down(i);
+            //break;
+        }
+        else{
+            clear = true;
         }
     }
 }
